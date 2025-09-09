@@ -1,27 +1,22 @@
-function verificabtn(nome, idade){
-    if(idade >= 18){
-       return 'Olá ' + nome + ', você pode entrar';
+document.getElementById("verificabtn").addEventListener("click", function () {
+    const nome = document.getElementById("nome").value;
+    const nota1 = parseFloat(document.getElementById("nota1").value);
+    const nota2 = parseFloat(document.getElementById("nota2").value);
+    const nota3 =   (document.getElementById("nota3").value);
 
-    } else {
-        return 'Olá ' + nome + ', você não pode entrar';
+    
+    if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+        document.getElementById("resultado").innerText = "Por favor, insira todas as notas corretamente.";
+        return;
     }
 
+   
+    const media = (nota1 + nota2 + nota3) / 3;
 
-}
+   
+    let mensagem = `${nome}, sua média é ${media.toFixed(2)}. `;
+    mensagem += media >= 6 ? "Aprovado!" : "Reprovado.";
 
-function passadeano(){
-    var val1 = document.getElementById('valor1').value;
-    var val2 = document.getElementById('valor2').value;
-    var val3 = document.getElementById('valor3').value;
-
-    result = (val1+val2+val3)/3;
-
-    if(result >= 5){
-        return 'Tá aprovado com a média';
-    } else if(result >= 4){
-        return 'Recuperação';
-    } else {
-        return 'Reprovado';
-    }
-
-}
+   
+    document.getElementById("resultado").innerText = mensagem;
+});
